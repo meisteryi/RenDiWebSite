@@ -1,0 +1,76 @@
+/* Custom Styles for RENDI Introduction Website */
+
+:root {
+  --brand-navy: #002c5f;
+  --brand-navy-light: #0b4380;
+  --brand-navy-dark: #001a38;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  word-break: keep-all;
+}
+
+/* Keyword button active and inactive styles */
+.keyword-btn {
+  color: #cbd5e1; /* slate-300 */
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.keyword-btn:hover {
+  color: #64748b; /* slate-500 */
+}
+
+.keyword-btn.active {
+  color: #0f172a; /* slate-900 */
+  text-decoration-line: underline;
+  text-decoration-color: #002c5f;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 14px;
+}
+
+@media (min-width: 640px) {
+  .keyword-btn.active {
+    text-decoration-thickness: 7px;
+    text-underline-offset: 18px;
+  }
+}
+
+/* Nav links active state */
+.nav-link.active {
+  color: #002c5f;
+  background-color: #f1f5f9;
+}
+
+/* Panel transition animations */
+.section-panel {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #002c5f;
+}
+
