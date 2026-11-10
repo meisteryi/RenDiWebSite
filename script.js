@@ -53,6 +53,14 @@ function selectSection(sectionId, smoothScroll = false) {
   }
 }
 
+// Mobile Nav Toggle
+function toggleMobileNav() {
+  const mobileNav = document.getElementById('mobile-nav');
+  if (mobileNav) {
+    mobileNav.classList.toggle('hidden');
+  }
+}
+
 // On DOM Loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize lucide icons
