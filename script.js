@@ -117,23 +117,23 @@ function switchDemoView(viewType) {
   }
 }
 
-// Interactive Simulator Scenarios (Hyundai Contest Features)
+// Interactive Simulator Scenarios (Synced with RentACarAgent README Demo)
 const simScenarios = {
   1: {
-    question: "🚗 원래 아반떼 MD 탔는데, 이번에 빌린 디 올 뉴 싼타페는 기어가 어디 있어?",
-    answer: "아반떼 MD의 봉 형태 기어레버와 달리, 이번 싼타페는 <strong>핸들(스티어링 휠) 오른쪽 뒤편에 달린 전자식 컬럼 레버</strong>입니다.<br/><br/><strong>조작법:</strong><br/>1. 브레이크를 밟은 상태에서 레버 끝부분 다이얼을 <strong>앞으로 돌리면 D(주행)</strong>, <strong>뒤로 돌리면 R(후진)</strong>입니다.<br/>2. 주차 시에는 레버 끝단의 <strong>P 버튼</strong>을 누르시면 됩니다."
+    question: "🚗 [출발 전] 평소 차량 'SUV' 선택 (더 뉴 아이오닉 5 탑승)",
+    answer: "<strong>[출발 전 비교 브리핑 · Pleos TTS]</strong><br/>\"더 뉴 아이오닉 5는 평소 타시던 SUV와 변속과 감속 방식이 다를 수 있습니다. 평소 기어봉을 쓰셨다면, 이 차는 브레이크 페달을 밟은 채 <strong>변속 다이얼을 돌려 D나 R을 고르고, 주차할 때는 P 버튼</strong>을 누릅니다. 또 전기차라서 주행 중에는 <strong>회생 제동</strong>이 자동으로 작동하니, 처음에는 감속되는 느낌을 확인하며 천천히 출발하세요.\""
   },
   2: {
-    question: "🔘 비상등 버튼 어디 있는지 모르겠어",
-    answer: "비상등 버튼은 <strong>가운데 내비게이션 화면 바로 아래, 중앙 송풍구 정중앙에 있는 빨간색 삼각형 테두리가 그려진 네모난 버튼</strong>입니다. 팔을 가볍게 뻗어 누르실 수 있습니다."
+    question: "🚘 [주행 D · 70km/h] \"렌디\" → \"스마트 크루즈 어떻게 켜?\"",
+    answer: "<strong>[Gemini 의도 분류: 스마트 크루즈 켜기 · 공식 매뉴얼 검증 DB]</strong><br/>\"<strong>핸들 왼쪽 버튼 묶음의 맨 윗줄 바깥쪽</strong>을 보세요. <strong>자동차와 속도계가 함께 그려진 주행 보조 버튼</strong>이 있어요. 그 버튼을 한 번 누르면 스마트 크루즈를 켤 수 있어요. 운전 보조 기능입니다. 손은 운전대에, 시선은 전방에 두세요.\""
   },
   3: {
-    question: "💨 야 앞유리에 김 서려서 앞이 안 보여",
-    answer: "<strong>[비정형 자연어 입력 매핑: 앞유리 습기 제거 / FRONT 디포거]</strong><br/>센터페시아 에어컨 조작부에서 <strong>부채꼴 모양 안에 화살표 세 개가 위로 솟아오르는 아이콘('FRONT') 버튼</strong>을 누르세요. 에어컨이 자동으로 가동되어 습기가 즉시 제거됩니다."
+    question: "🅿️ [주행 D · 70km/h] \"어디 있는지 모르겠어\" → 이후 정차(P · 0km/h) 전환",
+    answer: "<strong>[주행 중 상세 안내 보류]</strong><br/>\"지금은 운전에 집중해 주세요. 정차하면 차근차근 알려드릴게요.\"<br/><br/><strong>[기어 P · 0km/h 정차 감지 후 RENDI 먼저 제안]</strong><br/>\"아까 찾으시던 스마트 크루즈, 지금 알려드릴까요?\"<br/>➔ \"응, 알려줘\" 입력 시 위치·모양 안내 후 <strong>단계별 조작</strong>까지 이어서 안내합니다."
   },
   4: {
-    question: "🔊 주유구는 어디서 열어야 해?",
-    answer: "<strong>[TTS 음성 변환 출력]</strong><br/>\"운전석 문을 열고 왼쪽 발밑 바닥을 보시면 <strong>주유기 그림이 그려진 납작한 은색 레버</strong>가 있습니다. 레버를 손가락으로 가볍게 위로 당겨 올려주세요. 주유구는 차량 좌측 뒤편에 위치합니다.\""
+    question: "💨 [주행 D · 70km/h] \"렌디\" → \"앞이 뿌옇게 보여\"",
+    answer: "<strong>[Gemini 의도 분류: 앞유리 서리 제거 · 공식 매뉴얼 검증 DB]</strong><br/>\"<strong>가운데 화면 아래 히터·에어컨 조작부의 아랫줄, 운전석 온도 버튼 바로 오른쪽</strong>을 보세요. <strong>앞유리 모양 안에 물결 화살표가 위로 올라가는 서리 제거 버튼</strong>이에요. 한 번 누르면 표시등이 켜지고 앞유리 쪽으로 바람이 나와요. 앞이 많이 안 보이면 먼저 안전한 곳에 차를 세운 뒤 조작하세요.\""
   }
 };
 
