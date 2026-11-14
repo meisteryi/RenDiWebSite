@@ -308,28 +308,17 @@
               </button>
             </div>
 
-            <!-- 1. Demo Video Placeholder Container -->
+            <!-- 1. Demo Video Container -->
             <div id="demo-video-container"
-              class="relative rounded-2xl overflow-hidden border border-slate-300 bg-slate-900 text-white shadow-xl aspect-video max-w-4xl mx-auto flex flex-col items-center justify-center p-6 group">
-              <!-- Background Graphic / Grid -->
-              <div
-                class="absolute inset-0 opacity-20 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]">
-              </div>
-
-              <div class="relative z-10 flex flex-col items-center text-center space-y-4 max-w-lg">
-                <!-- Play Button / Icon -->
-                <div
-                  class="w-20 h-20 rounded-full bg-white/10 border border-white/20 backdrop-blur-md flex items-center justify-center group-hover:scale-110 group-hover:bg-[#002c5f] transition-all cursor-pointer shadow-lg">
-                  <i data-lucide="play" class="w-8 h-8 fill-white text-white ml-1"></i>
-                </div>
-
-                <div>
-                  <h4 class="text-xl sm:text-2xl font-bold">RENDI 시연 영상 준비 중</h4>
-                  <p class="text-sm text-slate-300 mt-2 break-keep">
-                    더 뉴 아이오닉 5 기준 출발 전 비교 브리핑, 주행·정차 상태별 안전 안내 및 실시간 음성 대화 시연 영상이 등록될 예정입니다.
-                  </p>
-                </div>
-              </div>
+              class="relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-950 shadow-xl aspect-video max-w-4xl mx-auto">
+              <video
+                class="w-full h-full object-contain"
+                src="assets/demo.mp4"
+                controls
+                playsinline
+                preload="metadata">
+                브라우저가 HTML5 비디오 재생을 지원하지 않습니다.
+              </video>
             </div>
 
             <!-- 2. Interactive Simulator (Mock App UI) -->

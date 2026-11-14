@@ -75,14 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     selectSection('identity');
   }
-
-  // Demo video placeholder click interaction
-  const demoVideoContainer = document.getElementById('demo-video-container');
-  if (demoVideoContainer) {
-    demoVideoContainer.addEventListener('click', () => {
-      alert('🎥 RENDI 시연 영상은 현재 제작/등록 준비 중입니다.\n향후 데모 비디오 파일(MP4) 또는 유튜브 링크를 연결할 수 있습니다.');
-    });
-  }
 });
 
 // Demo View Switcher (Video vs Interactive Simulator)
@@ -93,6 +85,10 @@ function switchDemoView(viewType) {
   const simContainer = document.getElementById('demo-simulator-container');
 
   if (viewType === 'simulator') {
+    const videoEl = videoContainer ? videoContainer.querySelector('video') : null;
+    if (videoEl && !videoEl.paused) {
+      videoEl.pause();
+    }
     simBtn.classList.replace('bg-white', 'bg-[#002c5f]');
     simBtn.classList.replace('text-slate-700', 'text-white');
     videoBtn.classList.replace('bg-[#002c5f]', 'bg-white');
