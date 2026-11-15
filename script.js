@@ -1,81 +1,119 @@
-// RENDI Website Interactive Logic
+// Continuous section navigation; content is always present in the document.
+const sections = ['problem-definition', 'identity', 'service', 'differentiation', 'business'];
 
-const sections = ['identity', 'service', 'business', 'differentiation'];
-let currentSection = 'identity';
-
-function selectSection(sectionId, smoothScroll = false) {
+function selectSection(sectionId) {
   if (!sections.includes(sectionId)) return;
-  currentSection = sectionId;
+  const target = document.getElementById(sectionId);
+  if (!target) return;
+  target.scrollIntoView({
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    block: 'start'
+  });
+  history.replaceState(null, '', `#${sectionId}`);
+}
 
-  // 1. Update Keyword Buttons styling (Meisteryi style)
-  sections.forEach((id) => {
-    const btn = document.getElementById(`btn-${id}`);
-    const navBtn = document.querySelector(`.nav-link[data-target="${id}"]`);
-    const panel = document.getElementById(`panel-${id}`);
+function toggleMobileNav() {
+  const drawer = document.getElementById('mobile-nav');
+  const button = document.getElementById('mobile-menu-btn');
+  if (!drawer || !button) return;
+  const open = drawer.classList.contains('hidden');
+  drawer.classList.toggle('hidden', !open);
+  button.setAttribute('aria-expanded', String(open));
+  button.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+}
 
-    if (id === sectionId) {
-      if (btn) btn.classList.add('active');
-      if (navBtn) navBtn.classList.add('active');
-      if (panel) {
-        panel.classList.remove('hidden');
-        panel.style.display = 'block';
-      }
-    } else {
-      if (btn) btn.classList.remove('active');
-      if (navBtn) navBtn.classList.remove('active');
-      if (panel) {
-        panel.classList.add('hidden');
-        panel.style.display = 'none';
-      }
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.lucide) window.lucide.createIcons();
+  const header = document.querySelector('header');
+  const drawer = document.getElementById('mobile-nav');
+  const menuButton = document.getElementById('mobile-menu-btn');
+  const links = [...document.querySelectorAll('header .nav-link')];
+  const targets = sections.map((id) => document.getElementById(id)).filter(Boolean);
+  let headerHeight = 81;
+  let sectionObserver;
+
+  function closeMenu() {
+    drawer.classList.add('hidden');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', '메뉴 열기');
+  }
+  document.querySelectorAll('header a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !drawer.classList.contains('hidden')) {
+      closeMenu();
+      menuButton.focus();
     }
   });
 
-  // Re-run Lucide icons creation for newly visible elements
-  if (window.lucide) {
-    window.lucide.createIcons();
+  function updateActiveSection() {
+    // Include the observer's 1px band so entry activates the new section immediately.
+    const line = headerHeight + 26;
+    let active = '';
+    targets.forEach((target) => {
+      if (target.getBoundingClientRect().top <= line) active = target.id;
+    });
+    links.forEach((link) => {
+      const selected = link.dataset.target === active;
+      link.classList.toggle('active', selected);
+      if (selected) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
   }
 
-  // Smooth scroll to interactive section if requested
-  if (smoothScroll) {
-    const targetElement = document.getElementById('interactive-showcase');
-    if (targetElement) {
-      const topOffset = targetElement.getBoundingClientRect().top + window.pageYOffset - 90;
-      window.scrollTo({
-        top: topOffset,
-        behavior: 'smooth'
+  function observeSections() {
+    // Measure the permanent header row, excluding the expandable mobile drawer.
+    headerHeight = header.firstElementChild.getBoundingClientRect().height +
+      parseFloat(getComputedStyle(header).borderBottomWidth || '0');
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+    if (sectionObserver) sectionObserver.disconnect();
+    if ('IntersectionObserver' in window) {
+      const top = Math.min(headerHeight + 24, window.innerHeight - 2);
+      const bottom = Math.max(0, window.innerHeight - top - 1);
+      sectionObserver = new IntersectionObserver(updateActiveSection, {
+        rootMargin: `-${top}px 0px -${bottom}px 0px`, threshold: 0
       });
+      [document.getElementById('hero'), ...targets].forEach((target) => sectionObserver.observe(target));
     }
+    if (window.matchMedia('(min-width: 1024px)').matches) closeMenu();
+    updateActiveSection();
+  }
+  observeSections();
+  window.addEventListener('resize', observeSections);
+  window.addEventListener('hashchange', updateActiveSection);
+  if (!('IntersectionObserver' in window)) {
+    let pending = false;
+    window.addEventListener('scroll', () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => { updateActiveSection(); pending = false; });
+    }, { passive: true });
   }
 
-  // Update hash without jumping
-  if (history.replaceState) {
-    history.replaceState(null, null, `#${sectionId}`);
-  }
-}
-
-// Mobile Nav Toggle
-function toggleMobileNav() {
-  const mobileNav = document.getElementById('mobile-nav');
-  if (mobileNav) {
-    mobileNav.classList.toggle('hidden');
-  }
-}
-
-// On DOM Loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize lucide icons
-  if (window.lucide) {
-    window.lucide.createIcons();
-  }
-
-  // Check URL hash
-  const hash = window.location.hash.replace('#', '');
-  if (sections.includes(hash)) {
-    selectSection(hash);
-  } else {
-    selectSection('identity');
+  // Animate on entry without CSS hiding: a failed script leaves content visible.
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if ('IntersectionObserver' in window && !reducedMotion.matches && 'animate' in Element.prototype) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        revealObserver.unobserve(entry.target);
+        if (reducedMotion.matches) return;
+        const siblings = [...entry.target.parentElement.children];
+        const delay = entry.target.classList.contains('story-heading') ? 0 : Math.min(siblings.indexOf(entry.target), 3) * 90;
+        entry.target.animate([
+          { opacity: 0, transform: 'translateY(16px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], { duration: 550, delay, easing: 'ease-out', fill: 'backwards' });
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.story-heading, .story-section h3, .story-section .grid > [class*="rounded"], #identity img, #problem-heading, .problem-subheading').forEach((target) => revealObserver.observe(target));
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) document.getAnimations().forEach((animation) => animation.cancel());
+    });
   }
 });
+
 
 // Demo View Switcher (Video vs Interactive Simulator)
 function switchDemoView(viewType) {

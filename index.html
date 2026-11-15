@@ -50,143 +50,140 @@
     class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-3 group">
+      <a href="#hero" aria-label="RENDI 첫 화면으로 이동" class="flex items-center gap-3 group">
         <img src="assets/rendi_icon.png" alt="RENDI Icon"
           class="w-10 h-10 object-contain drop-shadow-sm group-hover:scale-105 transition-transform" />
         <span class="text-2xl font-black tracking-tight text-[#002c5f]">RENDI</span>
       </a>
 
-      <!-- Quick Nav Buttons for 4 Sections -->
-      <nav class="hidden md:flex items-center gap-1 sm:gap-2">
-        <button onclick="selectSection('identity', true)"
-          class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all"
-          data-target="identity">1. 브랜드 & 로고</button>
-        <button onclick="selectSection('service', true)"
-          class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all"
-          data-target="service">2. 서비스 소개</button>
-        <button onclick="selectSection('business', true)"
-          class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all"
-          data-target="business">3. 사업성</button>
-        <button onclick="selectSection('differentiation', true)"
-          class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all"
-          data-target="differentiation">4. 차별성</button>
+      <!-- Scroll navigation -->
+      <nav aria-label="주요 섹션" class="hidden lg:flex items-center gap-1">
+        <a href="#problem-definition" class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all" data-target="problem-definition">1. 문제정의</a>
+        <a href="#identity" class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all" data-target="identity">2. 브랜드 & 로고</a>
+        <a href="#service" class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all" data-target="service">3. 서비스 소개</a>
+        <a href="#differentiation" class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all" data-target="differentiation">4. 차별성</a>
+        <a href="#business" class="nav-link px-4 py-2 rounded-full text-sm font-semibold text-slate-600 hover:text-brand hover:bg-slate-50 transition-all" data-target="business">5. 사업성</a>
       </nav>
 
-      <!-- Action & Mobile Menu Toggle Button -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button onclick="selectSection('service', true)"
-          class="hidden sm:flex px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#002c5f] text-white text-xs sm:text-sm font-bold shadow-md hover:bg-[#001a38] transition-all items-center gap-2 cursor-pointer">
-          <span>데모 미리보기</span>
-          <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i>
-        </button>
-
-        <button type="button" onclick="toggleMobileNav()" id="mobile-menu-btn"
-          class="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors" aria-label="메뉴 열기">
+      <!-- Mobile Menu Toggle Button -->
+      <div class="flex lg:hidden items-center gap-2 sm:gap-3">
+        <button type="button" onclick="toggleMobileNav()" id="mobile-menu-btn" aria-controls="mobile-nav" aria-expanded="false"
+          class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors" aria-label="메뉴 열기">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-nav" class="hidden md:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-4 py-3 space-y-1">
-      <button onclick="selectSection('identity', true); toggleMobileNav();"
-        class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
-        <span>1. 브랜드 & 로고</span>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-      </button>
-      <button onclick="selectSection('service', true); toggleMobileNav();"
-        class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
-        <span>2. 서비스 소개</span>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-      </button>
-      <button onclick="selectSection('business', true); toggleMobileNav();"
-        class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
-        <span>3. 사업성</span>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-      </button>
-      <button onclick="selectSection('differentiation', true); toggleMobileNav();"
-        class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
-        <span>4. 차별성</span>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
-      </button>
+    <div id="mobile-nav" class="hidden lg:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-4 py-3 space-y-1" aria-label="모바일 섹션 메뉴">
+      <a href="#problem-definition" data-target="problem-definition" class="nav-link w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
+        <span>1. 문제정의</span><i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+      </a>
+      <a href="#identity" data-target="identity" class="nav-link w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
+        <span>2. 브랜드 & 로고</span><i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+      </a>
+      <a href="#service" data-target="service" class="nav-link w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
+        <span>3. 서비스 소개</span><i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+      </a>
+      <a href="#differentiation" data-target="differentiation" class="nav-link w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
+        <span>4. 차별성</span><i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+      </a>
+      <a href="#business" data-target="business" class="nav-link w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:text-brand hover:bg-slate-50 transition-all flex items-center justify-between">
+        <span>5. 사업성</span><i data-lucide="chevron-right" class="w-4 h-4" aria-hidden="true"></i>
+      </a>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section
-    class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white">
+  <section id="hero"
+    class="relative bg-gradient-to-b from-slate-50 via-white to-white">
     <div
       class="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(#002c5f_1px,transparent_1px)] [background-size:24px_24px]">
     </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      <div class="max-w-3xl">
+    <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="max-w-3xl lg:max-w-none">
         <div
           class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-brand text-xs sm:text-sm font-bold mb-6">
-          <span>Android Automotive OS · 렌터카 차량 적응 음성 도우미</span>
+          <span>YOUR RENTAL DRIVING BUDDY</span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.15] mb-6 break-keep">
-          낯선 차량도 내 차처럼,<br>
-          <span class="text-[#002c5f]">RENDI</span>가 음성으로 안내합니다.
+        <h1 class="text-4xl sm:text-6xl lg:text-[clamp(2.5rem,4.6875vw,3.75rem)] font-black text-slate-900 tracking-tight leading-[1.15] mb-6 break-keep">
+          <span class="block lg:whitespace-nowrap">운전은 익숙해도, 처음 타는 차는 낯설기에.</span>
+          <span class="block lg:whitespace-nowrap">차량 적응의 A to Z, <span class="text-[#002c5f]">RENDI</span></span>
         </h1>
 
-        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal mb-8 break-keep">
-          출발 전 평소 타던 차량 유형과의 차이점 브리핑부터, 주행 중 "렌디" 호출 한 번으로<br class="hidden sm:inline" />
-          공식 매뉴얼 기반 버튼 위치·모양을 안전하게 안내하는 AAOS 음성 AI 에이전트.
+        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal mb-6 break-keep">
+          <span class="lg:whitespace-nowrap">평소 타던 차와의 차이부터 기능을 몰라도 물어볼 수 있는 음성 안내까지</span><br>
+          처음 타는 현대차에 빠르게 적응할 수 있도록 공식 매뉴얼을 바탕으로 버튼의 위치·모양을 안전하게 안내하는 AAOS 기반 음성 AI 온보딩 에이전트.
         </p>
+        <ul class="flex flex-wrap items-center gap-2 m-0 p-0 list-none" aria-label="기술 태그">
+          <li class="rounded-full border border-brand/10 bg-brand/5 px-2.5 py-1 text-[11px] font-medium text-brand">Pleos</li>
+          <li class="rounded-full border border-brand/10 bg-brand/5 px-2.5 py-1 text-[11px] font-medium text-brand">AAOS</li>
+          <li class="rounded-full border border-brand/10 bg-brand/5 px-2.5 py-1 text-[11px] font-medium text-brand">LLM</li>
+          <li class="rounded-full border border-brand/10 bg-brand/5 px-2.5 py-1 text-[11px] font-medium text-brand">Voice AI</li>
+          <li class="rounded-full border border-brand/10 bg-brand/5 px-2.5 py-1 text-[11px] font-medium text-brand">On-device Wake Word</li>
+        </ul>
+        <button onclick="selectSection('service', true)"
+          class="hero-demo inline-flex px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#002c5f] text-white text-xs sm:text-sm font-bold shadow-md hover:bg-[#001a38] transition-all items-center gap-2 cursor-pointer">
+          <span>데모 미리보기</span>
+          <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i>
+        </button>
       </div>
     </div>
+    <a class="hero-scroll" href="#problem-definition" aria-label="문제정의 섹션으로 이동">
+      <span>SCROLL TO EXPLORE</span>
+      <i data-lucide="arrow-down" aria-hidden="true" class="w-4 h-4"></i>
+    </a>
   </section>
 
-  <!-- Interactive Keyword Showcase Section -->
-  <section id="interactive-showcase" class="py-12 md:py-20 border-t border-slate-100 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Problem Definition -->
+  <section id="problem-definition" aria-labelledby="problem-heading">
+    <div class="problem-wrap">
+      <h2 id="problem-heading">렌터카를 빌려도,<br>낯선 차에 적응하는 과정은<br><span>여전히 운전자 혼자의 몫입니다.</span></h2>
 
-      <!-- Keyword Selector Row (Meisteryi style large keyword buttons) -->
-      <div class="flex flex-col gap-6 sm:gap-8">
-        <div
-          class="flex flex-wrap items-baseline gap-x-6 sm:gap-x-12 lg:gap-x-16 gap-y-4 sm:gap-y-6 border-b border-slate-200 pb-6">
-
-          <!-- Keyword 1: 브랜드 & 로고 -->
-          <button type="button" onclick="selectSection('identity')" id="btn-identity"
-            class="keyword-btn text-left transition-all duration-300 group cursor-pointer focus:outline-none select-none">
-            <span class="block text-xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none">
-              1. 로고 & 브랜드
-            </span>
-          </button>
-
-          <!-- Keyword 2: 서비스 소개 -->
-          <button type="button" onclick="selectSection('service')" id="btn-service"
-            class="keyword-btn text-left transition-all duration-300 group cursor-pointer focus:outline-none select-none">
-            <span class="block text-xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none">
-              2. 서비스 소개
-            </span>
-          </button>
-
-          <!-- Keyword 3: 사업성 -->
-          <button type="button" onclick="selectSection('business')" id="btn-business"
-            class="keyword-btn text-left transition-all duration-300 group cursor-pointer focus:outline-none select-none">
-            <span class="block text-xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none">
-              3. 사업성
-            </span>
-          </button>
-
-          <!-- Keyword 4: 차별성 -->
-          <button type="button" onclick="selectSection('differentiation')" id="btn-differentiation"
-            class="keyword-btn text-left transition-all duration-300 group cursor-pointer focus:outline-none select-none">
-            <span class="block text-xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none">
-              4. 차별성
-            </span>
-          </button>
-
+      <div class="problem-context">
+        <div>
+          <h3>같은 새 출발, 다른 적응의 시간</h3>
+          <div class="problem-handover"><span>신차 구매자</span><p>차량 인도 과정에서 기능을 설명받을 기회</p></div>
+          <div class="problem-handover"><span>렌터카 운전자</span><p>짧은 인수 절차 뒤, 새로운 차량에 직접 적응</p></div>
         </div>
+        <aside class="problem-market" aria-label="국내 렌터카 시장 배경">
+          <h3>국내 렌터카 인가대수</h3>
+          <dl><div><dt>2021년</dt><dd>112.6<span>만 대</span></dd></div><div><dt>2026년 상반기</dt><dd>133.3<span>만 대</span></dd></div></dl>
+          <a href="https://www.redcap.co.kr/uploaded/board/material/1f2dddaeb21508f41229759e9bfd1cb10.pdf" target="_blank" rel="noopener noreferrer">출처: 레드캡투어 2026년 2분기 실적발표 · 시장 현황 ↗</a>
+        </aside>
       </div>
 
-      <!-- Dynamic Detail Panel Area -->
-      <div id="content-container" class="mt-8 transition-all duration-500 ease-out">
+      <div class="problem-subheading"><h3>알아야 하고, 찾아야 하고, 사용할 수 있어야 합니다.</h3></div>
+      <figure class="problem-manuals">
+        <div class="problem-manual-grid">
+          <div class="problem-manual-image"><img src="assets/차 설명서 1.png" alt="아이오닉 5 실내 대시보드와 센터 콘솔의 버튼 위치 및 번호" width="737" height="592" loading="lazy"></div>
+          <div class="problem-manual-image"><img src="assets/차 설명서 2.png" alt="아이오닉 5 운전석 도어와 주차 브레이크 등 조작부 위치 및 번호" width="746" height="593" loading="lazy"></div>
+          <div class="problem-manual-image"><img src="assets/차 설명서 3.png" alt="아이오닉 5 스티어링 휠과 변속 장치, 와이퍼 조작부 위치 및 번호" width="748" height="588" loading="lazy"></div>
+        </div>
+        <figcaption class="problem-manual-source">이미지 출처: <a href="https://ownersmanual.hyundai.com/full_webhelp/NE1/2025/ko_KR/id23C3IH040YK.html" target="_blank" rel="noopener noreferrer">현대자동차 공식 디지털 취급설명서</a> · 아이오닉 5 (2025)</figcaption>
+      </figure>
+      <div class="problem-questions" aria-label="운전자 질문 예시">
+        <p class="problem-bubble">“이 차는 기어를 어떻게 바꾸지?”</p>
+        <p class="problem-bubble">“앞유리가 뿌옇게 보여”</p>
+        <p class="problem-bubble">“스마트 크루즈 버튼은 어디 있지?”</p>
+        <p class="problem-bubble">“좌석의 위치, 사이드미러는 어떻게 조정하는 거지?”</p>
+      </div>
+      <div class="problem-cards">
+        <article class="problem-card"><span class="problem-number" aria-hidden="true">01</span><p class="problem-card-label">조작 방식의 차이</p><h4>평소 타던 차와<br>조작 방식이 다름</h4><p>변속 장치, 주차 브레이크, 회생제동까지. 익숙했던 조작도 차량이 바뀌면 다시 알아야 합니다.</p></article>
+        <article class="problem-card"><span class="problem-number" aria-hidden="true">02</span><p class="problem-card-label">상황과 기능 사이의 간극</p><h4>기능의 정확한<br>이름을 모름</h4><p>운전자는 기능 이름보다 지금 겪고 있는 상황을 먼저 인식합니다.</p></article>
+        <article class="problem-card"><span class="problem-number" aria-hidden="true">03</span><p class="problem-card-label">기능과 버튼 사이의 간극</p><h4>기능 이름을 알아도<br>버튼을 찾기 어려움</h4><p>스마트 크루즈처럼 같은 기능도 차량마다 버튼의 위치와 표시가 다릅니다.</p></article>
+      </div>
 
-        <!-- SECTION 1: 로고 & 브랜드 아이덴티티 -->
-        <div id="panel-identity" class="section-panel space-y-12">
+      <div class="problem-conclusion"><p class="problem-eyebrow">THE PROBLEM RENDI SOLVES</p><p>렌디가 해결하려는 것은 단순 정보 부족이 아니라,<br><strong>낯선 차량에서 필요한 기능을 어떻게 찾아 실제로 사용해야 하는지 모르는 문제입니다.</strong></p></div>
+    </div>
+  </section>
+  <script src="problem-definition.js" defer></script>
+
+  <section id="identity" class="story-section" aria-labelledby="identity-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="identity-heading" class="story-heading">렌터카의 상징, 한글 'ㅎ'과 알파벳 'R'</h2>
+      <div class="space-y-12">
           <!-- Overview Card -->
           <div class="p-8 sm:p-12 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -210,9 +207,6 @@
               <!-- Right: Explanation Details -->
               <div class="lg:col-span-7 space-y-6">
                 <div>
-                  <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
-                    렌터카의 상징 한글 'ㅎ'과 알파벳 'R'의 결합
-                  </h3>
                   <p class="text-slate-600 leading-relaxed break-keep">
                     대한민국 렌터카 고유 번호판 기호(하·허·호)의 자음 <strong>'ㅎ'</strong>과 <strong>'R'</strong>(Rent)을 하나의 위트 있는 아이콘으로 녹여낸
                     브랜드 심볼입니다.
@@ -280,15 +274,16 @@
             </div>
           </div>
         </div>
+    </div>
+  </section>
 
-        <!-- SECTION 2: 서비스 소개 & 데모 영상 자리 -->
-        <div id="panel-service" class="section-panel space-y-12 hidden">
+  <section id="service" class="story-section" aria-labelledby="service-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="service-heading" class="story-heading">Android Automotive OS 기반 차량 적응 음성 도우미</h2>
+      <div class="space-y-12">
           <!-- Intro Card -->
           <div class="p-8 sm:p-12 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm">
             <div class="max-w-3xl mb-10">
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
-                Android Automotive OS 기반 차량 적응 음성 도우미
-              </h3>
               <p class="text-slate-600 leading-relaxed break-keep">
                 출발 전에는 <strong>평소 차량 유형 기반 비교 브리핑</strong>을 제공하고, 주행 중에는 기기 내 호출어 <strong>"렌디"</strong>와 <strong>Pleos STT·TTS</strong>, <strong>Gemini 의도 분류</strong>를 통해 공식 매뉴얼로 검증된 버튼 위치와 모양을 안전하게 안내합니다.
               </p>
@@ -483,107 +478,15 @@
 
           </div>
         </div>
+    </div>
+  </section>
 
-        <!-- SECTION 3: 사업성 -->
-        <div id="panel-business" class="section-panel space-y-12 hidden">
+  <section id="differentiation" class="story-section" aria-labelledby="differentiation-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="differentiation-heading" class="story-heading">기존 매뉴얼·범용 음성비서와 다른 RENDI만의 차별성</h2>
+      <div class="space-y-12">
           <div class="p-8 sm:p-12 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm">
             <div class="max-w-3xl mb-10">
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
-                133.3만 대 렌터카 시장과 Pleos Connect 확산에 맞춘 차량 온보딩 비즈니스
-              </h3>
-              <p class="text-slate-600 leading-relaxed break-keep">
-                예약·인수·반납에 집중된 기존 렌터카 접점을 넘어, 탑승 이후의 차량 적응부터 데이터 기반 HMI 개선과 브랜드 경험까지 연결합니다.
-              </p>
-            </div>
-
-            <!-- Market & Target Metrics (From RENDI_기획서.docx) -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-              <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                <span class="text-xs font-bold text-slate-400">국내 렌터카 인가대수 (2026 상반기)</span>
-                <div class="text-3xl sm:text-4xl font-black text-[#002c5f] mt-1 mb-2">133.3만 대</div>
-                <p class="text-xs text-slate-500">2021년 112.6만 대 대비 지속 성장</p>
-              </div>
-
-              <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                <span class="text-xs font-bold text-slate-400">Pleos Connect 적용 목표 (2030년)</span>
-                <div class="text-3xl sm:text-4xl font-black text-[#002c5f] mt-1 mb-2">2,000만 대</div>
-                <p class="text-xs text-slate-500">현대차그룹 신차 단계적 확대 계획</p>
-              </div>
-
-              <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
-                <span class="text-xs font-bold text-slate-400">3년 차 목표 월간 활성 이용</span>
-                <div class="text-3xl sm:text-4xl font-black text-[#002c5f] mt-1 mb-2">월 6,000건</div>
-                <p class="text-xs text-slate-500">지원 5,000대 · 가동률 40% · 활성화율 30% 가정</p>
-              </div>
-            </div>
-
-            <!-- Business Model & Stakeholder Value -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <!-- 수익 모델 & 성과 목표 -->
-              <div class="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-                <div>
-                  <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold mb-3">
-                    범용 앱 수익 모델 &amp; 단계적 목표
-                  </div>
-                  <h4 class="text-xl font-bold text-slate-900 mb-3">개인 무료 제공 · 업체 운영 효율 B2B 유료화</h4>
-                  <ul class="space-y-3 text-sm text-slate-600">
-                    <li class="flex items-start gap-2">
-                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
-                      <span><strong>개인 운전자(무료):</strong> 비교 브리핑·음성 질의·단계별 안내·다시 보기 기능을 무료로 제공해 범용 진입 확보</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
-                      <span><strong>렌터카 업체(유료 가설):</strong> QR 진입, 반납 일정·조건 연동, 차종별 반복 문의 분석 등 운영 기능을 차량당 월 이용료 또는 업체 계약으로 제공</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
-                      <span><strong>단계적 도입 &amp; KPI:</strong> 초기 실증 100대 → 1년 차 500대(월 400건) → 3년 차 5,000대 / 브리핑 완료율 70% · 탐색 성공률 80% · 90일 재사용률 40%</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
-                  1차 타깃: 여행지 렌터카 이용객, 전기차 첫 운전자, 20~30대 및 Pleos 신차 이동 고객
-                </div>
-              </div>
-
-              <!-- 현대자동차 · 업체 가치 & 확장성 -->
-              <div class="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
-                <div>
-                  <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold mb-3">
-                    현대자동차 · 업체 가치 &amp; 확장 계획
-                  </div>
-                  <h4 class="text-xl font-bold text-slate-900 mb-3">조작 불편 피드백 채널 및 모빌리티 전반 확장</h4>
-                  <ul class="space-y-3 text-sm text-slate-600">
-                    <li class="flex items-start gap-2">
-                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
-                      <span><strong>렌터카 업체:</strong> 차량 인수 시 직원 반복 설명 부담과 단순 조작 문의 감소, 어려움이 잦은 기능 중심 안내 개선</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
-                      <span><strong>현대자동차 HMI 피드백:</strong> 동의 기반 익명화 질문 데이터로 신차 조작부 배치·HMI 직관성·디지털 매뉴얼 개선 및 렌트 경험의 구매 고려 연결</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
-                      <span><strong>확장성:</strong> 다국어 지원(방한 외국인·해외 렌터카)을 거쳐 시승차, 카셰어링, 법인 공용차량으로 적용 범위 확대</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
-                  근거: 2025 J.D. Power(안내 필요 38%) · 2025 TU Delft 낯선 차량 주행 연구
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SECTION 4: 차별성 -->
-        <div id="panel-differentiation" class="section-panel space-y-12 hidden">
-          <div class="p-8 sm:p-12 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm">
-            <div class="max-w-3xl mb-10">
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
-                기존 매뉴얼·범용 음성비서와 다른 RENDI만의 차별성
-              </h3>
               <p class="text-slate-600 leading-relaxed break-keep">
                 단순 정보 검색이나 기능 대리 실행을 넘어, 운전자의 평소 운전 경험과 주행·주차 상황을 함께 고려해 실제 조작으로 연결합니다.
               </p>
@@ -695,9 +598,97 @@
 
           </div>
         </div>
+    </div>
+  </section>
 
-      </div>
+  <section id="business" class="story-section" aria-labelledby="business-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="business-heading" class="story-heading">133.3만 대 렌터카 시장과 Pleos Connect 확산에 맞춘 차량 온보딩 비즈니스</h2>
+      <div class="space-y-12">
+          <div class="p-8 sm:p-12 rounded-3xl bg-slate-50 border border-slate-200/80 shadow-sm">
+            <div class="max-w-3xl mb-10">
+              <p class="text-slate-600 leading-relaxed break-keep">
+                예약·인수·반납에 집중된 기존 렌터카 접점을 넘어, 탑승 이후의 차량 적응부터 데이터 기반 HMI 개선과 브랜드 경험까지 연결합니다.
+              </p>
+            </div>
 
+            <!-- Market & Target Metrics (From RENDI_기획서.docx) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+              <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <span class="text-xs font-bold text-slate-400">국내 렌터카 인가대수 (2026 상반기)</span>
+                <div class="text-3xl sm:text-4xl font-black text-[#002c5f] mt-1 mb-2">133.3만 대</div>
+                <p class="text-xs text-slate-500">2021년 112.6만 대 대비 지속 성장</p>
+              </div>
+
+              <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <span class="text-xs font-bold text-slate-400">Pleos Connect 적용 목표 (2030년)</span>
+                <div class="text-3xl sm:text-4xl font-black text-[#002c5f] mt-1 mb-2">2,000만 대</div>
+                <p class="text-xs text-slate-500">현대차그룹 신차 단계적 확대 계획</p>
+              </div>
+
+              <div class="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <span class="text-xs font-bold text-slate-400">3년 차 목표 월간 활성 이용</span>
+                <div class="text-3xl sm:text-4xl font-black text-[#002c5f] mt-1 mb-2">월 6,000건</div>
+                <p class="text-xs text-slate-500">지원 5,000대 · 가동률 40% · 활성화율 30% 가정</p>
+              </div>
+            </div>
+
+            <!-- Business Model & Stakeholder Value -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- 수익 모델 & 성과 목표 -->
+              <div class="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold mb-3">
+                    범용 앱 수익 모델 &amp; 단계적 목표
+                  </div>
+                  <h4 class="text-xl font-bold text-slate-900 mb-3">개인 무료 제공 · 업체 운영 효율 B2B 유료화</h4>
+                  <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start gap-2">
+                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
+                      <span><strong>개인 운전자(무료):</strong> 비교 브리핑·음성 질의·단계별 안내·다시 보기 기능을 무료로 제공해 범용 진입 확보</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
+                      <span><strong>렌터카 업체(유료 가설):</strong> QR 진입, 반납 일정·조건 연동, 차종별 반복 문의 분석 등 운영 기능을 차량당 월 이용료 또는 업체 계약으로 제공</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
+                      <span><strong>단계적 도입 &amp; KPI:</strong> 초기 실증 100대 → 1년 차 500대(월 400건) → 3년 차 5,000대 / 브리핑 완료율 70% · 탐색 성공률 80% · 90일 재사용률 40%</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-500">
+                  1차 타깃: 여행지 렌터카 이용객, 전기차 첫 운전자, 20~30대 및 Pleos 신차 이동 고객
+                </div>
+              </div>
+
+              <!-- 현대자동차 · 업체 가치 & 확장성 -->
+              <div class="p-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div>
+                  <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-bold mb-3">
+                    현대자동차 · 업체 가치 &amp; 확장 계획
+                  </div>
+                  <h4 class="text-xl font-bold text-slate-900 mb-3">조작 불편 피드백 채널 및 모빌리티 전반 확장</h4>
+                  <ul class="space-y-3 text-sm text-slate-600">
+                    <li class="flex items-start gap-2">
+                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
+                      <span><strong>렌터카 업체:</strong> 차량 인수 시 직원 반복 설명 부담과 단순 조작 문의 감소, 어려움이 잦은 기능 중심 안내 개선</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
+                      <span><strong>현대자동차 HMI 피드백:</strong> 동의 기반 익명화 질문 데이터로 신차 조작부 배치·HMI 직관성·디지털 매뉴얼 개선 및 렌트 경험의 구매 고려 연결</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <i data-lucide="check-circle" class="w-4 h-4 text-[#002c5f] shrink-0 mt-0.5"></i>
+                      <span><strong>확장성:</strong> 다국어 지원(방한 외국인·해외 렌터카)을 거쳐 시승차, 카셰어링, 법인 공용차량으로 적용 범위 확대</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
     </div>
   </section>
 
@@ -711,19 +702,6 @@
             <span class="text-2xl font-black tracking-tight text-white">RENDI</span>
             <p class="text-sm text-slate-400">스마트 렌터카 보조 AI 에이전트 서비스</p>
           </div>
-        </div>
-        <div class="flex flex-wrap items-center gap-4 text-sm font-medium">
-          <button onclick="selectSection('identity')" class="text-slate-400 hover:text-white transition-colors">로고 및
-            브랜드</button>
-          <span class="text-slate-700">|</span>
-          <button onclick="selectSection('service')" class="text-slate-400 hover:text-white transition-colors">서비스
-            소개</button>
-          <span class="text-slate-700">|</span>
-          <button onclick="selectSection('business')"
-            class="text-slate-400 hover:text-white transition-colors">사업성</button>
-          <span class="text-slate-700">|</span>
-          <button onclick="selectSection('differentiation')"
-            class="text-slate-400 hover:text-white transition-colors">차별성</button>
         </div>
       </div>
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
